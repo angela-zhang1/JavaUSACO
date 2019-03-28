@@ -7,6 +7,8 @@ ans:
 import java.io.*;
 import java.util.*;
 
+//USACO Bronze 2016 February contest, problem: pails
+
 public class pails {
 	public static void main(String[]args) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("pails.in"));
