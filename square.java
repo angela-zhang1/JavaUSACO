@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-//USACO December 2016 Bronze 1
+//USACO Bronze 2016 December contest, problem: square
 
 public class square {
 	public static void main (String[] args) throws IOException {
