@@ -6,6 +6,8 @@ ans:
 17 
 */
 
+//USACO Bronze 2017 December contest, problem: pails
+
 import java.io.*;
 import java.util.*;
 
