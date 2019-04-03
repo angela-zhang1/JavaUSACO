@@ -6,16 +6,16 @@ ans:
 17 
 */
 
-//USACO Bronze 2017 December contest, problem: pails
+//USACO Bronze 2017 December contest, problem: billboard
 
 import java.io.*;
 import java.util.*;
 
 public class billboard {
 	public static void main (String[]args) throws IOException {
-		//BufferedReader br = new BufferedReader(new FileReader("teleport.in"));
+		//BufferedReader br = new BufferedReader(new FileReader("billboard.in"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		//PrintWriter pw = new PrintWriter(new BufferedWriter (new FileWriter ("teleport.out")));
+		//PrintWriter pw = new PrintWriter(new BufferedWriter (new FileWriter ("billboard.out")));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int a; int b; int c; int d; int corner = 0;
 		int[] b0 = new int [4];
