@@ -15,8 +15,7 @@ that characteristic is at top of tree
 if a characteristic appears in multiple cows w
 */
 
-//USACO bronze 2019
-
+//USACO Bronze 2019 March/US Open contest, problem: evolution
 public class evolution {
 	public static void main(String[]args) throws IOException{
 		BufferedReader br = new BufferedReader(new FileReader("evolution.in"));
