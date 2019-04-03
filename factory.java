@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-//2019 USACO Bronze March/US open contest, problem: factory
+//2019 Bronze USACO March/US open contest, problem: factory
 
 /*
 Use a 2D array of booleans, check to see if there is a row filled (except for 1 column)
