@@ -35,6 +35,8 @@ ans:
 0 
 */
 
+//USACO Bronze 2016 December Contest, problem: blocks
+
 public class blocks {
 	public static void main (String[]args) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("blocks.in"));
