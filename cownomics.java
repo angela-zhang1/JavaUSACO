@@ -12,6 +12,8 @@ ans:
 1 
 */
 
+//USACO Bronze 2017 March/US Open Contest, problem: cownomics
+
 public class cownomics {
 	public static void main (String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("cownomics.in"));
