@@ -1,0 +1,117 @@
+import java.io.*;
+import java.util.*;
+
+/*
+8 7
+0 3 8 5 6 9 0 0
+0 5
+0 6
+6 2
+8 1
+10 1
+5 3
+150 7
+ans:
+0
+1
+1
+0
+1
+1
+1 
+*/
+
+public class snowboots {
+	public static void main (String[]args) throws Exception {
+		//BufferedReader br = new BufferedReader(new FileReader("snowboots.in"));
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//PrintWriter pw = new PrintWriter(new FileWriter("snowboots.out"));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		int x, y, z = 0;
+		int n = Integer.parseInt(st.nextToken());
+		int b = Integer.parseInt(st.nextToken());
+		state[] t = new state[n]; //store tiles
+		int[][]bc = new int[b][2]; //store boot depth and step
+		boolean[] ret = new boolean[b]; //store whether or not can do
+		Arrays.fill(ret, true);
+		PriorityQueue<Integer> pq = new PriorityQueue<Integer> ();
+		
+		st = new StringTokenizer(br.readLine());
+		for (int i = 0; i < n; i++) {
+			state s = new state(Integer.parseInt(st.nextToken()), i);
+			t[i] = s;
+		}
+		Arrays.sort(t);
+		
+		for (int i = 0; i < b; i++) {
+			st = new StringTokenizer(br.readLine());
+			x = Integer.parseInt(st.nextToken()); 
+			y = Integer.parseInt(st.nextToken()); 
+			bc[i][0] = x;
+			bc[i][1] = y;
+		}
+		for (int i = 0; i < b; i++) {
+			x = bc[i][0]; //maximum snow depth
+			y = bc[i][1]; //step
+			for (int j = 0; j < t.length; j++) {
+				if (t[j].s <= x) {
+					break;
+				}
+				pq.add(t[j].p);
+			}
+			if (!pq.isEmpty()) {
+				int p = pq.poll();
+				for (int j = 0; j<pq.size() - 1; j++) {
+					if (Math.abs(p-pq.poll())==1) {
+						z++;
+					}
+					else {
+						System.out.println(z);
+						System.out.println();
+						if (z+1>x) {
+							ret[i] = false;
+							break;
+						}
+						z = 0;
+					}
+				}
+			}
+			if (!pq.isEmpty()) {
+				pq = new PriorityQueue<Integer>();
+			}
+		}
+		for (int i = 0; i < b; i++) {
+			if (ret[i]) {
+				System.out.println(1);
+			}
+			else {
+				System.out.println(0);
+			}
+		}
+		//pw.close();
+	}
+	static class state implements Comparable<state>{
+		int s, p; //s = snow depth, p = position
+		public state (int snow, int pos) {
+			s = snow;
+			p = pos;
+		}
+		public int compareTo(state o) {
+			if (o.s > this.s) {
+				return 1;
+			}
+			else if (o.s < this.s) {
+				return -1;
+			}
+			else {
+				if (o.p>this.p) {
+					return 1;
+				} 
+				else {
+					return -1;
+				}
+			}
+		}
+	}
+}
