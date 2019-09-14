@@ -23,9 +23,9 @@ ans:
 
 public class snowboots {
 	public static void main (String[]args) throws Exception {
-		//BufferedReader br = new BufferedReader(new FileReader("snowboots.in"));
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		//PrintWriter pw = new PrintWriter(new FileWriter("snowboots.out"));
+		BufferedReader br = new BufferedReader(new FileReader("snowboots.in"));
+		//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		PrintWriter pw = new PrintWriter(new FileWriter("snowboots.out"));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
 		int x, y, z = 0;
@@ -35,7 +35,7 @@ public class snowboots {
 		int[][]bc = new int[b][2]; //store boot depth and step
 		boolean[] ret = new boolean[b]; //store whether or not can do
 		Arrays.fill(ret, true);
-		PriorityQueue<Integer> pq = new PriorityQueue<Integer> ();
+		int[]a = new int[n];
 		
 		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < n; i++) {
@@ -54,42 +54,46 @@ public class snowboots {
 		for (int i = 0; i < b; i++) {
 			x = bc[i][0]; //maximum snow depth
 			y = bc[i][1]; //step
+			Arrays.fill(a, 100001);
 			for (int j = 0; j < t.length; j++) {
 				if (t[j].s <= x) {
 					break;
 				}
-				pq.add(t[j].p);
+				a[j] = t[j].p;
 			}
-			if (!pq.isEmpty()) {
-				int p = pq.poll();
-				for (int j = 0; j<pq.size() - 1; j++) {
-					if (Math.abs(p-pq.poll())==1) {
-						z++;
-					}
-					else {
-						System.out.println(z);
-						System.out.println();
-						if (z+1>x) {
-							ret[i] = false;
-							break;
-						}
-						z = 0;
-					}
+			int l = 0;
+			Arrays.sort(a);
+			if (a[0]!=100001 && a[1] == 100001) {
+				z=1;
+			}
+			while (a[l]!=100001 && a[l+1] !=100001) {
+				if (a[l+1] - a[l] ==1) {
+					z++;
 				}
+				else {
+					if (z+2> y && z!=0) {
+						ret[i] = false;
+						break;
+					}
+					z= 0;
+				}
+				l++;
 			}
-			if (!pq.isEmpty()) {
-				pq = new PriorityQueue<Integer>();
+			Arrays.fill(a, 100001);
+			if (z+2>y &&z!=0) {
+				ret[i] = false;
 			}
+			z=0;
 		}
 		for (int i = 0; i < b; i++) {
 			if (ret[i]) {
-				System.out.println(1);
+				pw.println(1);
 			}
 			else {
-				System.out.println(0);
+				pw.println(0);
 			}
 		}
-		//pw.close();
+		pw.close();
 	}
 	static class state implements Comparable<state>{
 		int s, p; //s = snow depth, p = position
