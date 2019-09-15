@@ -12,11 +12,13 @@ ans:
 4
 */
 
+//I'm getting every single edge case wrong
+
 public class sort {
 	public static void main(String[] args) throws Exception {
-		//BufferedReader br = new BufferedReader(new FileReader("sort.in"));
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		//PrintWriter pw = new PrintWriter(new FileWriter("sort.out"));
+		BufferedReader br = new BufferedReader(new FileReader("sort.in"));
+		//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		PrintWriter pw = new PrintWriter(new FileWriter("sort.out"));
 		int n = Integer.parseInt(br.readLine());
 		PriorityQueue<state> pq = new PriorityQueue<state> ();
 		int ret = 0; int x = 0;
@@ -28,11 +30,14 @@ public class sort {
 		for (int i = 0; i < n; i++) {
 			x = pq.poll().p;
 			if (x > n-1-i) {
-				ret = x-(n+i - 2);
+				ret = Math.max(ret,x-(n-i - 2));
 			}
 		}
-		System.out.println(ret);
-		//pw.close();
+		if (ret == 0) {
+			ret = 1;
+		}
+		pw.println(ret);
+		pw.close();
 	}
 	static class state implements Comparable<state> {
 		int v,p;
