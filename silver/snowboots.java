@@ -1,5 +1,5 @@
 import java.io.*;
-import java.util.*; 
+import java.util.*;
 
 /*
 10 4
@@ -13,11 +13,12 @@ ans:
 */
 
 //8 out of 10 test cases
+//check if the next pair of boots is OK to step on current tile
 public class snowboots {
 	public static void main (String[]args) throws Exception {
-		BufferedReader br = new BufferedReader(new FileReader("snowboots.in"));
-		//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		PrintWriter pw = new PrintWriter(new FileWriter("snowboots.out"));
+		//BufferedReader br = new BufferedReader(new FileReader("snowboots.in"));
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//PrintWriter pw = new PrintWriter(new FileWriter("snowboots.out"));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int n = Integer.parseInt(st.nextToken());
 		int b = Integer.parseInt(st.nextToken());
@@ -44,14 +45,14 @@ public class snowboots {
 			}
 			else { 
 				if (z!=0 && z+1 > y) {
-					bo+=1;
+					bo++;
 					i-=z;
 					i-=2;
 				}
 				z=0;
 			}
 		}
-		pw.println(bo);
-		pw.close();
+		System.out.println(bo);
+		//pw.close();
 	}
 } 
