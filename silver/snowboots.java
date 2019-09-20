@@ -54,4 +54,4 @@ public class snowboots {
 		pw.println(bo);
 		pw.close();
 	}
-}
+} 
