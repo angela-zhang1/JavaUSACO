@@ -13,6 +13,8 @@ ans:
 3
 0
 2
+
+create a 2D array, store connections. To find how something connects, go through the array
 */
 
 public class mootube {
@@ -24,6 +26,7 @@ public class mootube {
 		int n = Integer.parseInt(st.nextToken());
 		int q = Integer.parseInt(st.nextToken());
 		int k = 0; int[] ret = new int[q];
+		int[] s = new int[n];
 		int x,y,z = 0;
 		int[][] a = new int[q][q];
 		for (int i = 0; i < n-1; i++) {
