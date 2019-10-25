@@ -39,6 +39,8 @@ public class vacation {
 			in[y] = true; out[x] = true;
 		}
 		for (int i = 0; i < q; i++) {
+			x = Integer.parseInt(st.nextToken());
+			y = Integer.parseInt(st.nextToken());
 			
 		}
 	}
