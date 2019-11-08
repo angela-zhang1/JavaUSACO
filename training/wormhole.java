@@ -11,7 +11,8 @@ public class wormhole {
 		int n = Integer.parseInt(br.readLine());
 		int x = 0; int y = 0;
 		state[] a2 = new state[n];
-		ArrayList<Integer> b = new ArrayList<Integer> ();
+		int[]b = new int[n];
+		Arrays.fill(b, 13);
 		state z;
 		for (int i = 0; i < n; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -27,11 +28,12 @@ public class wormhole {
 				rep++;
 			}
 			else {
-				b.set(curr,rep);
+				b[curr] = rep;
 				curr++;
 				curr2 = i+1;
 			}
 		}
+		Arrays.sort(b);
 		for (int i : b) {
 			
 		}
