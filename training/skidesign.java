@@ -56,17 +56,23 @@ public class skidesign {
 				} 
 			}
 			for (int j = i; j < n; j++) {
+				if (a[j] - a[i] > 0) {
 				distances +=Math.pow(a[j] - a[i], 2);
+				}
 			}
 			ret = Math.min(distances, ret);
 			
 			x = a[i] + 17;
 			distances = 0;
 			for (int j = 0; j <= i; j++) {
+				if (a[i]-a[j] > 0) {	
 					distances+=Math.pow(a[i]-a[j], 2);
+				}
 			}
 			for (int j = i; j < n; j++) {
-				distances +=Math.pow(a[j] - x, 2);
+				if (a[j] - x > 0) {
+					distances +=Math.pow(a[j] - x, 2);
+				}
 			}
 			ret = Math.min(distances, ret);
   		}
