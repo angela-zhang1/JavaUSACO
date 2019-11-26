@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.*;
+
+/*
+5 2
+5
+7
+0
+17
+16
+20
+19
+ans:
+4
+*/
+
+//https://www.geeksforgeeks.org/unbounded-knapsack-repetition-items-allowed/
+
+public class mooomoo {
+	public static void main (String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//BufferedReader br = new BufferedReader(new FileReader("mooomoo.in"));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int n = Integer.parseInt(st.nextToken());
+		int b = Integer.parseInt(st.nextToken());
+		int x; int cows = 0; int rem; int ret = 0;
+		int[] a = new int[b];
+		for (int i = 0; i < b; i++) {
+			x = Integer.parseInt(br.readLine());
+			a[i] = x;
+		}
+		Arrays.sort(a);
+		for (int i = 0; i < n; i++) {
+			x = Integer.parseInt(br.readLine());
+			rem = x-cows;
+			//find smallest possible partition for rem
+
+			cows += x;
+			cows--;
+		}
+	}
+}
+
+import java.io.*;
+import java.util.*;
+
+/*
+3 11
+0 2
+5 0
+4 3
+ans:
+46
+*/
+
+//USACO 2014 March Contest, Silver
+
+public class irrigation {
+	public static void main (String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//BufferedReader br = new BufferedReader(new FileReader("irrigation.in"));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		
+	}
+}
