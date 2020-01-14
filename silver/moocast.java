@@ -16,6 +16,7 @@ public class moocast {
 	static int n;
 	public static void main (String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//BufferedReader br = new BufferedReader(new FileReader("moocast.in"));
 		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("moocast.out")));
 		n = Integer.parseInt(br.readLine());
 		StringTokenizer st;
@@ -26,16 +27,16 @@ public class moocast {
 		HashMap<Integer, Integer> hmap = new HashMap<Integer,Integer> ();
 		//int[] y = new int[y];
 		int p = 0; int x; int y; int x2; int y2;
-		
+
 		for (int i = 0; i < n; i++) {
 			st = new StringTokenizer(br.readLine());
 			a[i][0] = Integer.parseInt(st.nextToken());
 			a[i][1] = Integer.parseInt(st.nextToken());
 			b[i] = Integer.parseInt(st.nextToken());
 		}
-		
+
 		/* To
-		 	1	2	3	4	
+		 	1	2	3	4
 from	1
 		2
 		3
@@ -46,7 +47,7 @@ from	1
 				c[i][j] = false;
 			}
 		}
-		
+
 		for (int i = 0; i < n; i++) { //setting up connection array
 			p = b[i]; //power
 			x = a[i][0];
@@ -61,28 +62,56 @@ from	1
 				}
 			}
 		}
-		
-		int ret = 0;
+
+		/*for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (c[i][j])
+				System.out.print(1 + " ");
+				else
+					System.out.print(0 + " ");
+			}
+			System.out.println();
+		}*/
+
+		int ret = Integer.MIN_VALUE;
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
 				d[j] = false;
 			}
+			d[i] = true;
 			hmap = dfs(i, new HashMap<Integer,Integer>());
-			ret = Math.max(ret, hmap.size());
+			//System.out.println(hmap.size());
+			if (hmap.size() > ret)
+				ret = hmap.size();
+
+			//debugging
+			/*
+			Set<Integer> se = new HashSet<Integer> ();
+			se = hmap.keySet();
+			Iterator it = se.iterator();
+			while (it.hasNext()) {
+				System.out.println(it.next());
+			}
+			System.out.println();
+			*/
 		}
+
 		System.out.println(ret);
 		pw.close();
 	}
 	public static HashMap<Integer, Integer> dfs (int first, HashMap <Integer, Integer>map) { //fix this, stack overflow
-		d[first] = true;
 		map.put(first, first);
+		//System.out.println(first);
 		for (int i = 0; i < n; i++) {
-			if (!d[i]) {
-				if (c[first][i]) {
-					return dfs(first, map);
-				}
+			//System.out.println(first + " " + i + " " + d[i] + " " + c[first][i]);
+			if (!d[i] && i!=first && c[first][i]) { //is there any way we can get to a visited cow later?
+				//System.out.println("we got em,folks!");
+				//System.out.println();
+				d[i] = true;
+				return dfs(i, map);
 			}
 		}
-		return null;
+
+		return map;
 	}
 }
