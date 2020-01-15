@@ -15,8 +15,8 @@ public class moocast {
 	static boolean c[][];
 	static int n;
 	public static void main (String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		//BufferedReader br = new BufferedReader(new FileReader("moocast.in"));
+		//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader br = new BufferedReader(new FileReader("moocast.in"));
 		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("moocast.out")));
 		n = Integer.parseInt(br.readLine());
 		StringTokenizer st;
@@ -56,7 +56,7 @@ from	1
 				x2 = a[j][0];
 				y2 = a[j][1];
 				if (i == j || //same node
-				p >= Math.sqrt(Math.pow(x-x2, 2) + Math.pow(y-y2, 2))) // power > distance between
+				p*p >= Math.pow(x-x2, 2) + Math.pow(y-y2, 2)) // power > distance between
 				{
 					c[i][j] = true;
 				}
@@ -78,11 +78,9 @@ from	1
 			for (int j = 0; j < n; j++) {
 				d[j] = false;
 			}
-			d[i] = true;
-			hmap = dfs(i, new HashMap<Integer,Integer>());
+			
 			//System.out.println(hmap.size());
-			if (hmap.size() > ret)
-				ret = hmap.size();
+			ret = Math.max(ret, dfs(i));
 
 			//debugging
 			/*
@@ -96,22 +94,26 @@ from	1
 			*/
 		}
 
-		System.out.println(ret);
+		pw.println(ret);
 		pw.close();
 	}
-	public static HashMap<Integer, Integer> dfs (int first, HashMap <Integer, Integer>map) { //fix this, stack overflow
-		map.put(first, first);
+	public static int dfs (int first) { //fix this, stack overflow
+		if (d[first]) {
+			return 0;
+		}
+		d[first] = true;
+		int ret = 1;
 		//System.out.println(first);
 		for (int i = 0; i < n; i++) {
 			//System.out.println(first + " " + i + " " + d[i] + " " + c[first][i]);
-			if (!d[i] && i!=first && c[first][i]) { //is there any way we can get to a visited cow later?
+			if (c[first][i]) { //is there any way we can get to a visited cow later?
 				//System.out.println("we got em,folks!");
 				//System.out.println();
-				d[i] = true;
-				return dfs(i, map);
+				//d[i] = true;
+				ret+=dfs(i);
 			}
 		}
 
-		return map;
+		return ret;
 	}
 }
